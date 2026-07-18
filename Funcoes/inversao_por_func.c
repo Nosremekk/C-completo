@@ -4,13 +4,21 @@
 void inverter_string(char *string)
 {
     char *inicio = string;
-    char *fim = string + strlen(string) - 1;
+    char *fim = string;
 
-    char temp;
+    // Encontra o final da string
+    while (*fim != '\0')
+    {
+        fim++;
+    }
 
+    // Volta para o último caractere
+    fim--;
+
+    // Inverte a string
     while (inicio < fim)
     {
-        temp = *inicio;
+        char temp = *inicio;
         *inicio = *fim;
         *fim = temp;
 
@@ -26,12 +34,20 @@ int main(void)
     printf("Digite uma string: ");
     fgets(texto, 100, stdin);
 
-    // Remove o '\n' deixado pelo fgets
-    texto[strcspn(texto, "\n")] = '\0';
+        int i = 0;
+    while (texto[i] != '\0')
+    {
+        if (texto[i] == '\n')
+        {
+            texto[i] = '\0';
+            break;
+        }
+        i++;
+    }
 
     inverter_string(texto);
 
     printf("String invertida: %s\n", texto);
 
     return 0;
-} 
+}
